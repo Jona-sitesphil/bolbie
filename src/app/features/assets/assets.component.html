@@ -1,0 +1,208 @@
+<main id="main-content">
+  <section class="table-add-laptop">
+    <div class="parent-container">
+      <div class="dashboard-card">
+        <div class="table-container">
+          <div class="toolbar">
+            <button id="open-modal" class="add-button" (click)="openModal()">
+              + Add New Laptop
+            </button>
+            <div class="search-container">
+              <input type="text" placeholder="Search..." class="search-input" />
+              <button class="search-btn">🔍</button>
+            </div>
+          </div>
+
+          <table id="laptop-table" border="1">
+            <thead>
+              <tr>
+                <th>Laptop ID</th>
+                <th>Name</th>
+                <th>Purchased Date</th>
+                <th>Laptop Age</th>
+                <th>Serial Number</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Assigned Personnel</th>
+                <th>Assigned Personnel (Employment Date)</th>
+                <th>Condition</th>
+                <th>Inspection Frequency</th>
+                <th>Inspected By</th>
+                <th>Actions</th>
+              </tr>
+              <tr>
+                <td onclick="tableModal">1</td>
+                <td>Dell Inspiron 3501 Series</td>
+                <td data-date="2021-12-20">December 20, 2021</td>
+                <td class="calculate-duration"></td>
+                <td>7KJ2PH3</td>
+                <td>New Laptop Dell (Mat Black)</td>
+                <td>
+                  <select title="employee">
+                    <option>1NK Center</option>
+                    <option>2nd Office</option>
+                    <option>Warehouse</option>
+                  </select>
+                </td>
+                <td>
+                  <select title="employee">
+                    <option>Sir Benjie</option>
+                    <option>Ma'am Bev</option>
+                    <option>Cedric Lunar</option>
+                  </select>
+                </td>
+                <td class="calculate-duration" data-date=""></td>
+                <td onclick="toggleBoolean(this)">Working</td>
+                <td>Quarterly</td>
+                <td>
+                  <select title="employee" class="optionBar">
+                    <option>Cedric Lunar</option>
+                    <option>Kimm Carl Buban</option>
+                  </select>
+                </td>
+                <td>
+                  <button
+                    id="tbl-edt-btn"
+                    class="edit-btn"
+                    onclick="editRow(this)"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let laptop of laptops">
+                <td>{{ laptop.id }}</td>
+                <td>{{ laptop.name }}</td>
+                <td>{{ laptop.purchaseDate }}</td>
+                <td>{{ laptop.serial }}</td>
+                <td>{{ laptop.description }}</td>
+                <td>{{ laptop.location }}</td>
+                <td>{{ laptop.assigned }}</td>
+                <td>{{ laptop.condition }}</td>
+                <td>{{ laptop.inspection }}</td>
+                <td>{{ laptop.inspectedBy }}</td>
+                <td>
+                  <button class="edit-btn" (click)="openModal(true, laptop)">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="popup-wrapper" id="popup-wrapper" style="display: none">
+        <div class="popup-form" id="popup-form">
+          <button type="button" class="close-btn" (click)="closeModal()">
+            ×
+          </button>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="device">Device Name</label>
+              <input
+                type="text"
+                id="device"
+                formControlName="device"
+                placeholder="Enter Device Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="purchase-date">Purchase Date</label>
+              <input
+                type="date"
+                id="purchase-date"
+                formControlName="purchaseDate"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="deviceAge">Laptop Age</label>
+              <input
+                type="number"
+                id="deviceAge"
+                formControlName="deviceAge"
+                placeholder="Enter Device Age"
+                min="0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="serial">Serial Number</label>
+              <input
+                type="text"
+                id="serial"
+                formControlName="serial"
+                placeholder="Enter Device Serial"
+                required
+              />
+            </div>
+            <div class="form-group full-width">
+              <label for="description">Description</label>
+              <input
+                type="text"
+                id="description"
+                formControlName="description"
+                maxlength="50"
+                placeholder="Description"
+              />
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <select id="location" formControlName="location">
+                <option value="1NK Center">1NK Center</option>
+                <option value="2nd Office">2nd Office</option>
+                <option value="Warehouse">Warehouse</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="assigned">Assigned Personnel</label>
+              <select id="assigned" formControlName="assigned">
+                <option>Cedric Lunar</option>
+                <option>Kimm Carl Buban</option>
+                <option>Jhomark Alber</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="condition">Condition</label>
+              <select id="condition" formControlName="condition">
+                <option value="Brand New">Brand New</option>
+                <option value="Working">Working</option>
+                <option value="Broken">Broken</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inspection">Inspection Frequency</label>
+              <select id="inspection" formControlName="inspection">
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inspected">Inspected By</label>
+              <select id="inspected" formControlName="inspected">
+                <option>Cedric Lunar</option>
+                <option>Kimm Carl Buban</option>
+                <option>Jhomark Alber</option>
+              </select>
+            </div>
+            <div class="button-container">
+              <button class="cancel" type="button" (click)="closeModal()">
+                Cancel
+              </button>
+              <button class="save" type="button" (click)="saveLaptop()">
+                {{ isEditMode ? "Edit" : "Save" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

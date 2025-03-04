@@ -1,0 +1,41 @@
+<header>
+  <div class="menu-icon" (click)="toggleSidebar()">☰</div>
+  <div class="user-info">
+    <img
+      src="assets/Userdashboard.png"
+      alt="Profile Icon"
+      class="profile-icon"
+    />
+    <span>John Doe</span>
+  </div>
+</header>
+
+
+<div class="sidebar" [ngClass]="{ open: isSidebarOpen }" id="sidebar">
+  <div class="sidebar-header">
+    <img
+      src="assets/RecreatedFIGMAlogo.PNG"
+      alt="Company Icon"
+      class="company-icon"
+    />
+    <button class="close-btn" (click)="closeSidebar()">☰</button>
+  </div>
+  <ul>
+    <li>
+      <button (click)="goToDashboard()" class="btn">Dashboard</button>
+    </li>
+    <li class="dropdown">
+      <button (click)="navigateToAssets()" class="btn">ASSETS</button>
+    
+      <ul class="dropdown-menu">
+        <li>
+          <button (click)="navigateToLaptop()" class="btn">Laptop</button>
+         
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button (click)="navigateToLogin()" class="btn">LOGOUT</button>
+    </li>
+  </ul>
+</div>
