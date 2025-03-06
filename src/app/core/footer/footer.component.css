@@ -1,8 +1,6 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -14,16 +12,18 @@ body {
 }
 
 .main-content {
-  flex-grow: 1; /* Pushes footer down only if content is small */
+  flex-grow: 1;
+  min-height: 100rm;
 }
 
 .footer {
-  height: 50px;
-  color: white;
-  background-color: #333333;
-  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #333333;
+  color: white;
+  padding: 0.1rem;
+  text-align: center;
+  font-size: 1rem;
 }

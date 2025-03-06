@@ -12,7 +12,7 @@ export class FooterComponent {
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
-      const noFooterRoutes = ['/login', '/register']; // Add more routes if needed
+      const noFooterRoutes = ['/login', '/register']; 
       this.showFooter = !noFooterRoutes.includes(this.router.url);
     });
   }

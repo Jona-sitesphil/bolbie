@@ -8,8 +8,8 @@ main {
   flex: 1;
   padding: 20px;
   transition: margin-left 0.3s ease;
-}
 
+}
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,6 @@ main {
   font-size: 1.2rem;
   margin-left: 5px;
 }
-
 .dashboard-card {
   width: 100%;
   background-color: white;
@@ -46,7 +45,6 @@ main {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -190,7 +188,6 @@ th:last-child {
   justify-content: center;
   padding: 20px;
   z-index: 1000;
-  
 }
 
 /* modal grid */
@@ -201,7 +198,6 @@ th:last-child {
   grid-column: span 2;
   background-color: white;
   padding: 20px;
-  
 }
 
 /* Full-width elements */
@@ -262,7 +258,6 @@ th:last-child {
 .button-container .cancel {
   background: #e74c3c;
   color: #fff;
- 
 }
 
 .button-container .cancel:hover {

@@ -1,11 +1,11 @@
 <div class="wrapper">
   <div class="dashboard-container">
     <div class="stats-container">
-      <div class="stats-box">
-        <p class="stats-number">99</p>
-        <p class="stats-text">Number of Laptops</p>
+      <div class="stats-box" *ngFor="let data of jonadata">
+        <p class="stats-number">{{ data.count }}</p>
+        <p class="stats-text">{{ data.label }}</p>
       </div>
-      <div class="stats-box">
+      <!-- <div class="stats-box">
         <p class="stats-number">99</p>
         <p class="stats-text">Number of Desktops</p>
       </div>
@@ -16,9 +16,11 @@
       <div class="stats-box">
         <p class="stats-number">99</p>
         <p class="stats-text">Number of Device Parts</p>
-      </div>
+      </div> -->
     </div>
+  </div>
 
+  <div class="parent-container">
     <div class="table-container">
       <table>
         <thead>
@@ -32,31 +34,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
+          <tr *ngFor="let item of mockdata; let i = index">
+            <td>{{ i + 1 }}</td>
             <td>
               <select title="employee">
-                <option>Sir Benjie</option>
-                <option>Ma'am Bev</option>
-                <option>Cedric Lunar</option>
-                <option>Kimm Carl Buban</option>
-                <option>Jhomark Alber</option>
-                <option>Justmyr Rodriguez</option>
-                <option>Raymart Castillo</option>
-                <option>John Kenneth Fajiculay</option>
-                <option>Cheli Ann</option>
+                <option
+                  *ngFor="let employee of vincedata"
+                  [value]="employee.uid"
+                  [selected]="item.uid === employee.uid"
+                >
+                  {{ employee.name }}
+                </option>
               </select>
+
+              <!-- {{ item.assigned_personel }} -->
             </td>
-            <td>01/01/2021</td>
-            <td>1 year</td>
+            <td>{{ item.purchase_date }}</td>
+            <td>{{ item.laptop_age }}</td>
             <td>
-              <select title="employee">
+              <!-- <select title="employee">
                 <option>1NK Center</option>
                 <option>2nd Office</option>
                 <option>Warehouse</option>
-              </select>
+              </select> -->
+              {{ item.location }}
             </td>
-            <td>Working</td>
+            <td>
+              <!-- <select>
+                <option>Working</option>
+                <option>Brand New</option>  
+                <option>Broken</option>
+              </select> -->
+              {{ item.condition }}
+            </td>
           </tr>
         </tbody>
       </table>

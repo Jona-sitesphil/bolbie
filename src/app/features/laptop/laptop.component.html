@@ -1,0 +1,87 @@
+<main id="main-content">
+  <section class="table-add-laptop">
+    <div class="parent-container">
+      <div class="dashboard-card">
+        <div class="table-container">
+          <div class="toolbar">
+            <button id="open-modal" class="add-button" (click)="openModal()">+ Add New Laptop</button>
+            <div class="search-container">
+              <input type="text" placeholder="Search..." class="search-input">
+              <button class="search-btn">🔍</button>
+            </div>
+          </div>
+          <table id="laptop-table" border="1">
+            <thead>
+              <tr>
+                <th>Laptop ID</th>
+                <th>Name</th>
+                <th>Purchased Date</th>
+                <th>Laptop Age</th>
+                <th>Serial Number</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Assigned Personnel</th>
+                <th>Assigned Personnel (Employment Date)</th>
+                <th>Condition</th>
+                <th>Inspection Frequency</th>
+                <th>Inspected By</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Dell Inspiron 3501 Series</td>
+                <td data-date="2021-12-20">December 20, 2021</td>
+                <td class="calculate-duration"></td>
+                <td>7KJ2PH3</td>
+                <td>New Laptop Dell (Mat Black)</td>
+                <td>
+                  <select title="employee">
+                    <option>1NK Center</option>
+                    <option>2nd Office</option>
+                    <option>Warehouse</option>
+                  </select>
+                </td>
+                <td>
+                  <select title="employee">
+                    <option>Sir Benjie</option>
+                    <option>Ma'am Bev</option>
+                    <option>Cedric Lunar</option>
+                    <option>Kimm Carl Buban</option>
+                    <option>Jhomark Alber</option>
+                    <option>Justmyr Rodriguez</option>
+                    <option>Raymart Castillo</option>
+                    <option>John Kenneth Fajiculay</option>
+                    <option>Cheli Ann</option>
+                  </select>
+                </td>
+                <td class="calculate-duration" data-date=""></td>
+                <td>Working</td>
+                <td>Quarterly</td>
+                <td>
+                  <select title="employee" class="optionBar">
+                    <option>Cedric Lunar</option>
+                    <option>Kimm Carl Buban</option>
+                    <option>Jhomark Alber</option>
+                    <option>Justmyr Rodriguez</option>
+                    <option>Raymart Castillo</option>
+                    <option>John Kenneth Fajiculay</option>
+                    <option>Cheli Ann</option>
+                  </select>
+                </td>
+                <td>
+                  <button id="tbl-edt-btn" class="edit-btn" (click)="openModal()">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-modal *ngIf="isModalOpen" (closeModalEvent)="closeModal()"></app-modal>
+</main>
+
+

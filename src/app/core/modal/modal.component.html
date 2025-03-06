@@ -1,0 +1,124 @@
+<div *ngIf="isModalOpen" class="popup-wrapper">
+  <div class="popup-form">
+    <form [formGroup]="editLaptopForm" (ngSubmit)="onSubmit()">
+      <button type="button" class="close-btn" (click)="closeModal()">×</button>
+      <div class="editing-form-grid">
+        <div class="editing-form-group">
+          <label for="device">Device Name</label>
+          <input
+            type="text"
+            id="input-btn"
+            form
+            ControlName="device"
+            placeholder="Enter Device Name"
+            required
+          />
+        </div>
+
+        <div class="editing-form-group">
+          <label for="purchase-date">Purchase Date</label>
+          <input
+            type="date"
+            id="input-btn-purchase"
+            formControlName="purchaseDate"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="deviceAge">Laptop Age</label>
+          <input
+            type="number"
+            id="input-btn-purchase"
+            formControlName="deviceAge"
+            placeholder="Enter Device Age"
+            min="0"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="serial">Serial Number</label>
+          <input
+            type="text"
+            id="input-btn"
+            formControlName="serial"
+            placeholder="Enter Device Serial"
+            required
+          />
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full-width">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="input-btn"
+            formControlName="description"
+            maxlength="50"
+            placeholder="Description"
+          />
+        </div>
+
+        <!-- Assigned Personnel -->
+        <div class="form-group">
+          <label for="assigned">Assigned Personnel</label>
+          <select id="input-btn-purchase" formControlName="assigned">
+            <option>Cedric Lunar</option>
+            <option>Kimm Carl Buban</option>
+            <option>Jhomark Alber</option>
+            <option>Justmyr Rodriguez</option>
+            <option>Raymart Castillo</option>
+            <option>John Kenneth Fajiculay</option>
+            <option>Cheli Ann</option>
+          </select>
+        </div>
+
+        <!-- Condition -->
+        <div class="form-group">
+          <label for="condition">Condition</label>
+          <select id="input-btn-purchase" formControlName="condition">
+            <option value="Brand New">Brand New</option>
+            <option value="Working">Working</option>
+            <option value="Broken">Broken</option>
+          </select>
+        </div>
+
+        <!-- Inspection Frequency -->
+        <div class="form-group">
+          <label for="inspection">Inspection Frequency</label>
+          <select id="input-btn-purchase" formControlName="inspection">
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+          </select>
+        </div>
+
+        <!-- Inspected By -->
+        <div class="form-group">
+          <label for="inspected">Inspected By</label>
+          <select id="input-btn-purchase" formControlName="inspected">
+            <option>Cedric Lunar</option>
+            <option>Kimm Carl Buban</option>
+            <option>Jhomark Alber</option>
+            <option>Justmyr Rodriguez</option>
+            <option>Raymart Castillo</option>
+            <option>John Kenneth Fajiculay</option>
+            <option>Cheli Ann</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Buttons with Router Links -->
+      <div class="button-container">
+        <button type="button" class="cancel" (click)="closeModal()">
+          Cancel
+        </button>
+        <button type="submit" class="save" [disabled]="editLaptopForm.invalid">
+          save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

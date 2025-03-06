@@ -34,6 +34,6 @@ throw new Error('Method not implemented.');
     this.router.navigate(['/login']);
   }
   navigateToAssets(): void {   
-    this.router.navigate(['/main/assets']);
+    this.router.navigate(['/main/laptop']);
   }
 }

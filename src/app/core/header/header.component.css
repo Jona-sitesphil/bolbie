@@ -6,18 +6,17 @@ header {
   background-color: #333333;
   color: white;
   padding: 10px 20px;
+  
 }
 
 .menu-icon {
   font-size: 30px;
   cursor: pointer;
-  
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  
 }
 
 .profile-icon {
@@ -41,7 +40,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .sidebar.open {
@@ -57,7 +55,6 @@ header {
   max-width: 100px;
   height: auto;
   margin-right: auto;
-  
 }
 
 .sidebar ul {
@@ -108,7 +105,7 @@ header {
 .sidebar:not(.open) + #main-content {
   margin-left: 0;
 }
-.close-btn{
+.close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -118,14 +115,11 @@ header {
   border: none;
   padding: 5px;
 }
-.btn{
+.btn {
   width: 250px;
   height: 50px;
-  display:flex;
+  display: flex;
   justify-content: center;
   padding: 20px;
   margin-top: 10px;
-
-
- 
 }

@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  imports: [NgIf],
 })
 export class LoginComponent {
   @ViewChild('usernameInput') usernameInput!: ElementRef;
