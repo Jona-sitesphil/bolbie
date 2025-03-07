@@ -2,86 +2,151 @@
   <section class="table-add-laptop">
     <div class="parent-container">
       <div class="dashboard-card">
-        <div class="table-container">
-          <div class="toolbar">
-            <button id="open-modal" class="add-button" (click)="openModal()">+ Add New Laptop</button>
-            <div class="search-container">
-              <input type="text" placeholder="Search..." class="search-input">
-              <button class="search-btn">🔍</button>
-            </div>
+        <div class="toolbar">
+          <button id="open-modal" class="add-button" (click)="openModal()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="add_circle"
+            ></mat-icon>
+            <p>Add New Laptop</p>
+          </button>
+          <div class="search-container">
+            <input
+              matInput
+              type="text"
+              placeholder="Search..."
+              class="search-input"
+              [(ngModel)]="searchKeyword"
+            />
+            <button class="search-btn" (click)="onSearch()">
+              <mat-icon
+                class="search-btn"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                fontIcon="search"
+              ></mat-icon>
+            </button>
           </div>
-          <table id="laptop-table" border="1">
-            <thead>
-              <tr>
-                <th>Laptop ID</th>
-                <th>Name</th>
-                <th>Purchased Date</th>
-                <th>Laptop Age</th>
-                <th>Serial Number</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Assigned Personnel</th>
-                <th>Assigned Personnel (Employment Date)</th>
-                <th>Condition</th>
-                <th>Inspection Frequency</th>
-                <th>Inspected By</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dell Inspiron 3501 Series</td>
-                <td data-date="2021-12-20">December 20, 2021</td>
-                <td class="calculate-duration"></td>
-                <td>7KJ2PH3</td>
-                <td>New Laptop Dell (Mat Black)</td>
-                <td>
-                  <select title="employee">
-                    <option>1NK Center</option>
-                    <option>2nd Office</option>
-                    <option>Warehouse</option>
-                  </select>
-                </td>
-                <td>
-                  <select title="employee">
-                    <option>Sir Benjie</option>
-                    <option>Ma'am Bev</option>
-                    <option>Cedric Lunar</option>
-                    <option>Kimm Carl Buban</option>
-                    <option>Jhomark Alber</option>
-                    <option>Justmyr Rodriguez</option>
-                    <option>Raymart Castillo</option>
-                    <option>John Kenneth Fajiculay</option>
-                    <option>Cheli Ann</option>
-                  </select>
-                </td>
-                <td class="calculate-duration" data-date=""></td>
-                <td>Working</td>
-                <td>Quarterly</td>
-                <td>
-                  <select title="employee" class="optionBar">
-                    <option>Cedric Lunar</option>
-                    <option>Kimm Carl Buban</option>
-                    <option>Jhomark Alber</option>
-                    <option>Justmyr Rodriguez</option>
-                    <option>Raymart Castillo</option>
-                    <option>John Kenneth Fajiculay</option>
-                    <option>Cheli Ann</option>
-                  </select>
-                </td>
-                <td>
-                  <button id="tbl-edt-btn" class="edit-btn" (click)="openModal()">Edit</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        </div>
+        <div class="table-container">
+          <table mat-table [dataSource]="laptops" class="mat-elevation-z8">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>Laptop ID</th>
+              <td mat-cell *matCellDef="let laptop">{{ laptop.id }}</td>
+            </ng-container>
 
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let laptop">{{ laptop.name }}</td>
+            </ng-container>
+
+            <!-- Purchased Date Column -->
+            <ng-container matColumnDef="purchasedDate">
+              <th mat-header-cell *matHeaderCellDef>Purchased Date</th>
+              <td mat-cell *matCellDef="let laptop">
+                {{ laptop.purchasedDate }}
+              </td>
+            </ng-container>
+
+            <!-- Serial Number Column -->
+            <ng-container matColumnDef="serialNumber">
+              <th mat-header-cell *matHeaderCellDef>Serial Number</th>
+              <td mat-cell *matCellDef="let laptop">
+                {{ laptop.serialNumber }}
+              </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let laptop">
+                {{ laptop.description }}
+              </td>
+            </ng-container>
+
+            <!-- Location Column with Select -->
+            <ng-container matColumnDef="location">
+              <th mat-header-cell *matHeaderCellDef>Location</th>
+              <td mat-cell *matCellDef="let laptop">
+                <mat-select [(value)]="laptop.location" style="width: 150px">
+                  <mat-option value="1NK Center">1NK Center</mat-option>
+                  <mat-option value="2nd Office">2nd Office</mat-option>
+                  <mat-option value="Warehouse">Warehouse</mat-option>
+                </mat-select>
+              </td>
+            </ng-container>
+
+            <!-- Assigned Personnel Column with Select -->
+            <ng-container matColumnDef="assignedPersonnel">
+              <th mat-header-cell *matHeaderCellDef>Assigned Personnel</th>
+              <td mat-cell *matCellDef="let laptop">
+                <mat-select [(value)]="laptop.assignedPersonnel">
+                  <mat-option
+                    *ngFor="
+                      let person of ['Sir Benjie', 'Ma\'am Bev', 'Cedric Lunar']
+                    "
+                    [value]="person"
+                  >
+                    {{ person }}
+                  </mat-option>
+                </mat-select>
+              </td>
+            </ng-container>
+
+            <!-- Condition Column -->
+            <ng-container matColumnDef="condition">
+              <th mat-header-cell *matHeaderCellDef>Condition</th>
+              <td mat-cell *matCellDef="let laptop">{{ laptop.condition }}</td>
+            </ng-container>
+
+            <!-- Inspection Frequency Column -->
+            <ng-container matColumnDef="inspectionFrequency">
+              <th mat-header-cell *matHeaderCellDef>Inspection Frequency</th>
+              <td mat-cell *matCellDef="let laptop">
+                {{ laptop.inspectionFrequency }}
+              </td>
+            </ng-container>
+
+            <!-- Inspected By Column -->
+            <ng-container matColumnDef="inspectedBy">
+              <th mat-header-cell *matHeaderCellDef>Inspected By</th>
+              <td mat-cell *matCellDef="let laptop">
+                <mat-select [(value)]="laptop.inspectedBy" style="width: 150px">
+                  <mat-option
+                    *ngFor="
+                      let inspector of [
+                        'Bolbi Cedric Lunar',
+                        'Pogi si Kim Carl Buban',
+                        'Justmyr Matambukin'
+                      ]
+                    "
+                    [value]="inspector"
+                  >
+                    {{ inspector }}
+                  </mat-option>
+                </mat-select>
+              </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let laptop">
+                <button mat-button color="primary" (click)="openModal()">
+                  Edit
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
         </div>
       </div>
     </div>
   </section>
   <app-modal *ngIf="isModalOpen" (closeModalEvent)="closeModal()"></app-modal>
 </main>
-
-

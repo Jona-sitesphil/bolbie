@@ -6,6 +6,17 @@
   font-family: Arial, sans-serif;
 }
 
+/* Default wrapper style */
+.wrapper {
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+
+/* When sidebar is open, add margin */
+.wrapper.sidebar-open {
+  margin-left: 250px;
+}
+
 /* Main Dashboard Container */
 .dashboard-container {
   font-family: Arial, sans-serif;

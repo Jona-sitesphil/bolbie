@@ -7,11 +7,12 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { FeaturesService } from "../../features/features.service";
 
 @Component({
   selector: "app-modal",
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.css"],
   standalone: true,
@@ -21,11 +22,12 @@ export class ModalComponent {
 
   editLaptopForm: FormGroup;
   isModalOpen: boolean = true;
+  isLaptopOpen: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private featuresService: FeaturesService // ✅ Inject the service
+    private featuresService: FeaturesService
   ) {
     this.editLaptopForm = this.fb.group({
       device: ["", Validators.required],
@@ -33,7 +35,7 @@ export class ModalComponent {
       deviceAge: ["", [Validators.required, Validators.min(0)]],
       serial: ["", Validators.required],
       description: ["", [Validators.maxLength(50)]],
-      // location: [""],
+      location: [""],
       assigned: [""],
       condition: [""],
       inspection: [""],
@@ -43,20 +45,22 @@ export class ModalComponent {
 
   closeModal() {
     this.isModalOpen = false;
-    this.closeModalEvent.emit(); // 🔸 Emit the event when modal is closed
+    this.closeModalEvent.emit();
   }
 
-  // 🌟 Handle form submission
+  toggleLaptop() {
+    this.isLaptopOpen = !this.isLaptopOpen;
+  }
+
   onSubmit() {
     if (this.editLaptopForm.valid) {
       const laptopData = this.editLaptopForm.value;
-      console.log("Submitting:", laptopData); // 🔸 Debug log
+      console.log("Submitting:", laptopData);
 
-      // 🌟 Call the addLaptop service method
       this.featuresService.addLaptop(laptopData).subscribe({
         next: (response) => {
           console.log("Laptop added successfully:", response);
-          this.closeModal(); // Close modal on success
+          this.closeModal();
         },
         error: (error) => {
           console.error("Error adding laptop:", error);

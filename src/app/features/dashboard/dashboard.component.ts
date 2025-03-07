@@ -56,15 +56,21 @@ export class DashboardComponent {
     },
     {
       uid: 14,
-      name: "bolbi",
+      name: "bolbi si kim carl",
     },
     {
       uid: 15,
-      name: " bobbisaur",
+      name: " when u kim",
     },
     {
       uid: 16,
       name: "justmyr mapagmahal",
     },
   ];
+
+  isSidebarOpen = false; // Track sidebar state
+
+  handleSidebarToggle(isOpen: boolean): void {
+    this.isSidebarOpen = isOpen;
+  }
 }

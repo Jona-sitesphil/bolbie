@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" [ngClass]="{ 'sidebar-open': isSidebarOpen }">
   <div class="dashboard-container">
     <div class="stats-container">
       <div class="stats-box" *ngFor="let data of jonadata">
