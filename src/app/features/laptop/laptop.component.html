@@ -59,7 +59,6 @@
               </td>
             </ng-container>
 
-            <!-- Description Column -->
             <ng-container matColumnDef="description">
               <th mat-header-cell *matHeaderCellDef>Description</th>
               <td mat-cell *matCellDef="let laptop">
@@ -67,7 +66,6 @@
               </td>
             </ng-container>
 
-            <!-- Location Column with Select -->
             <ng-container matColumnDef="location">
               <th mat-header-cell *matHeaderCellDef>Location</th>
               <td mat-cell *matCellDef="let laptop">
@@ -79,7 +77,6 @@
               </td>
             </ng-container>
 
-            <!-- Assigned Personnel Column with Select -->
             <ng-container matColumnDef="assignedPersonnel">
               <th mat-header-cell *matHeaderCellDef>Assigned Personnel</th>
               <td mat-cell *matCellDef="let laptop">
@@ -96,13 +93,11 @@
               </td>
             </ng-container>
 
-            <!-- Condition Column -->
             <ng-container matColumnDef="condition">
               <th mat-header-cell *matHeaderCellDef>Condition</th>
               <td mat-cell *matCellDef="let laptop">{{ laptop.condition }}</td>
             </ng-container>
 
-            <!-- Inspection Frequency Column -->
             <ng-container matColumnDef="inspectionFrequency">
               <th mat-header-cell *matHeaderCellDef>Inspection Frequency</th>
               <td mat-cell *matCellDef="let laptop">
@@ -110,7 +105,6 @@
               </td>
             </ng-container>
 
-            <!-- Inspected By Column -->
             <ng-container matColumnDef="inspectedBy">
               <th mat-header-cell *matHeaderCellDef>Inspected By</th>
               <td mat-cell *matCellDef="let laptop">

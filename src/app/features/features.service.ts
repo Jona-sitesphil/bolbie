@@ -10,16 +10,16 @@ import { catchError, map, Observable, retry, throwError } from "rxjs";
   providedIn: "root",
 })
 export class FeaturesService {
-  private baseUrl = "http://localhost:4200/api/laptops";  // Adjust endpoint here
+  private baseUrl = "http://localhost:4200/api/laptops";  
 
   constructor(private http: HttpClient) {}
 
   addLaptop(laptop: any): Observable<any> {
-    const token = sessionStorage.getItem("auth_token");
+    const token   = sessionStorage.getItem("auth_token");
     const options = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,  // Added 'Bearer' for standard auth
+        Authorization: `Bearer ${token}`, 
       }),
     };
 

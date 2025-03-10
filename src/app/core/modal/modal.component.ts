@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
@@ -12,7 +8,7 @@ import { FeaturesService } from "../../features/features.service";
 
 @Component({
   selector: "app-modal",
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, MatIconModule, FormsModule],
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.css"],
   standalone: true,
@@ -22,7 +18,20 @@ export class ModalComponent {
 
   editLaptopForm: FormGroup;
   isModalOpen: boolean = true;
-  isLaptopOpen: boolean = false;
+  isAddEmployeeOpen: boolean = false; // For Add Employee modal
+  newEmployee: string = "";
+
+  employees: string[] = [
+    "Cedric Lunar",
+    " Kim Carl Buban",
+    "Jhomark Alber",
+    "Justmyr Rodriguez",
+    "Raymart Castillo",
+    "John Kenneth Fajiculay",
+    "Cheli Ann",
+    "Beverly Dadis"
+    
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -31,25 +40,44 @@ export class ModalComponent {
   ) {
     this.editLaptopForm = this.fb.group({
       device: ["", Validators.required],
-      purchaseDate: ["", Validators.required],
-      deviceAge: ["", [Validators.required, Validators.min(0)]],
       serial: ["", Validators.required],
       description: ["", [Validators.maxLength(50)]],
-      location: [""],
+      purchaseDate: ["", Validators.required],
+      location: ["", Validators.required],
       assigned: [""],
-      condition: [""],
-      inspection: [""],
-      inspected: [""],
+      condition: ["", Validators.required],
+      previousOwner: [""],
+      inspection: ["", Validators.required],
     });
   }
 
+  // Close main modal
   closeModal() {
     this.isModalOpen = false;
     this.closeModalEvent.emit();
   }
 
-  toggleLaptop() {
-    this.isLaptopOpen = !this.isLaptopOpen;
+  onAssignedChange(event: Event) {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    if (selectedValue === "add") {
+      this.openAddEmployeeModal();
+    }
+  }
+
+  openAddEmployeeModal() {
+    this.isAddEmployeeOpen = true;
+  }
+
+  closeAddEmployeeModal() {
+    this.isAddEmployeeOpen = false;
+    this.newEmployee = "";
+  }
+
+  addEmployee() {
+    if (this.newEmployee.trim()) {
+      this.employees.push(this.newEmployee.trim());
+      this.closeAddEmployeeModal();
+    }
   }
 
   onSubmit() {

@@ -7,7 +7,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDialogModule } from "@angular/material/dialog";
-import { FormsModule, NgModel } from "@angular/forms";
+import { FormsModule,  } from "@angular/forms";
 
 interface Laptop {
   id: number;
@@ -33,6 +33,7 @@ interface Laptop {
     MatSelectModule,
     MatDialogModule,
     FormsModule,
+    
   ],
   templateUrl: "./laptop.component.html",
   styleUrl: "./laptop.component.css",
@@ -94,6 +95,7 @@ export class LaptopComponent implements OnInit {
   searchKeyword = "";
   pageNo = 1;
   pageSize = 10;
+isEditMode: any;
 
   constructor(private FeaturesService: FeaturesService) {}
 
